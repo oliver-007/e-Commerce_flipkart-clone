@@ -1,0 +1,15 @@
+.flexRow {
+  display: flex;
+  flex-direction: row;
+}
+.cartContainer {
+  display: flex;
+  max-width: 1260px;
+  margin: 15px auto;
+  justify-content: space-between;
+}
+.cartItemDetails {
+  display: flex;
+  justify-content: space-between;
+  flex: 1;
+}
