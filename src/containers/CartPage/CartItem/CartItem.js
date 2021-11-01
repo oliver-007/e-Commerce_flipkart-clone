@@ -3,7 +3,20 @@ import { generatePublicUrl } from "../../../urlConfig";
 import "./cartItem.css";
 
 const CartItem = (props) => {
-  const { _id, name, price, qty, img } = props.cartItem;
+  const [qty, setQty] = useState(props.cartItem.qty);
+
+  const { _id, name, price, img } = props.cartItem;
+
+  const onQuantityIncrement = () => {
+    setQty(qty + 1);
+    props.onQuantityInc(_id, qty + 1);
+  };
+
+  const onQuantityDecrement = () => {
+    if (qty <= 1) return;
+    setQty(qty - 1);
+    props.onQuantityDec(_id, qty - 1);
+  };
 
   return (
     <div className="cartItemContainer">
@@ -26,9 +39,9 @@ const CartItem = (props) => {
         }}
       >
         <div className="quantityControl">
-          <button> - </button>
+          <button onClick={onQuantityDecrement}> - </button>
           <input value={qty} readOnly />
-          <button> + </button>
+          <button onClick={onQuantityIncrement}> + </button>
         </div>
         <button className="cartActionBtn">save for later</button>
         <button className="cartActionBtn">Remove</button>
